@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Airplane hero background">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="60%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <!-- Clouds -->
+  <g filter="url(#soft)" opacity="0.75" fill="#ffffff">
+    <ellipse cx="310" cy="520" rx="240" ry="90"/>
+    <ellipse cx="470" cy="500" rx="200" ry="80"/>
+    <ellipse cx="210" cy="490" rx="180" ry="70"/>
+
+    <ellipse cx="1120" cy="420" rx="260" ry="95"/>
+    <ellipse cx="1290" cy="410" rx="210" ry="80"/>
+    <ellipse cx="980" cy="400" rx="200" ry="75"/>
+
+    <ellipse cx="760" cy="640" rx="300" ry="110"/>
+    <ellipse cx="950" cy="630" rx="240" ry="95"/>
+    <ellipse cx="610" cy="620" rx="220" ry="90"/>
+  </g>
+
+  <!-- Simple airplane silhouette -->
+  <g transform="translate(260,210) rotate(-8 540 240)" opacity="0.92">
+    <path d="M820 255 L1010 285 L1020 315 L820 300 Z" fill="#e5e7eb"/>
+    <path d="M220 290 C380 300 520 320 680 330 C790 338 880 340 980 338 L980 306 C880 305 790 302 690 294 C520 278 380 258 220 248 Z" fill="#f8fafc"/>
+    <path d="M540 140 L680 220 L650 230 L520 175 Z" fill="#e5e7eb"/>
+    <path d="M520 370 L660 340 L650 360 L520 405 Z" fill="#e5e7eb"/>
+    <circle cx="260" cy="270" r="18" fill="#cbd5e1"/>
+    <circle cx="320" cy="280" r="12" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Subtle vignette for readability -->
+  <rect width="1600" height="900" fill="#000" opacity="0.12"/>
+</svg>

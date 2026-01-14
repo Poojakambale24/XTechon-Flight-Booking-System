@@ -4,6 +4,7 @@ import HowItWorks from "../components/HowItWorks";
 import AirlineLogos from "../components/AirlineLogos";
 import FlightSearchBox from "../components/FlightSearchBox";
 import airplaneImg from "../assets/airplane-hero.jpg";
+import airplaneFallback from "../assets/airplane-hero-fallback.svg";
 
 export default function LandingPage() {
   return (
@@ -15,7 +16,11 @@ export default function LandingPage() {
           src={airplaneImg}
           alt="Airplane Hero"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
+          onError={(e) => {
+            e.currentTarget.src = airplaneFallback;
+          }}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-transparent" />
         <div className="relative z-10 text-center text-white drop-shadow-xl">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4">Book Your Next Flight with XTechon</h1>
           <p className="text-lg md:text-2xl mb-8 font-medium">Modern. Fast. Reliable. Airline-grade booking for everyone.</p>

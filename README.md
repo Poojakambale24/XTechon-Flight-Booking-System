@@ -38,7 +38,9 @@ npm run prisma:seed
 npm run dev
 ```
 - Backend: `http://localhost:4000`
-- Frontend: `http://localhost:3002` (or next free port)
+- Frontend: `http://localhost:3002`
+
+If you see CRA prompting about ports, something else is already using `3002`/`4000`. The repo includes a best‑effort `predev` cleanup to free those ports.
 
 ## Production build
 
@@ -58,3 +60,8 @@ npm start
 ## Notes
 - Auth uses JWT (Bearer token) returned from `/api/auth/login` and `/api/auth/register`.
 - For production, set `JWT_SECRET` and restrict CORS origin.
+
+## Landing hero image
+- The landing page hero uses `frontend/src/assets/airplane-hero.jpg`.
+- If that file is missing/empty, it falls back to `frontend/src/assets/airplane-hero-fallback.svg`.
+- To use your own image, replace `airplane-hero.jpg` with a real JPG (recommended ~1600×900).
