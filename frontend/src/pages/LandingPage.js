@@ -5,8 +5,11 @@ import AirlineLogos from "../components/AirlineLogos";
 import FlightSearchBox from "../components/FlightSearchBox";
 import airplaneImg from "../assets/airplane-hero.jpg";
 import airplaneFallback from "../assets/airplane-hero-fallback.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex flex-col bg-blue-50">
       <Navbar />
@@ -28,7 +31,15 @@ export default function LandingPage() {
       </div>
       {/* Flight Search Box overlays hero */}
       <div className="relative z-20 -mt-16 mb-8">
-        <FlightSearchBox />
+        <FlightSearchBox
+          onSearch={({ from, to }) => {
+            const query = new URLSearchParams({
+              departure_city: from,
+              arrival_city: to,
+            });
+            navigate(`/flights?${query.toString()}`);
+          }}
+        />
       </div>
       {/* How it works */}
       <div className="max-w-6xl mx-auto w-full px-4">

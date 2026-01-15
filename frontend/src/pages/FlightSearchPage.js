@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlightSearch from "../components/FlightSearch";
 import BookingForm from "../components/BookingForm";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { apiUrl } from "../lib/api";
+import { useLocation } from "react-router-dom";
 
 export default function FlightSearchPage() {
 	const [flights, setFlights] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const [selectedFlight, setSelectedFlight] = useState(null);
+	const location = useLocation();
 
 	const handleSearch = async (params) => {
 		setLoading(true);
@@ -21,13 +23,25 @@ export default function FlightSearchPage() {
 				.join("&");
 			const res = await fetch(apiUrl(`/api/flights?${query}`));
 			const data = await res.json();
-			setFlights(data);
+			if (!res.ok) throw new Error(data?.error || "Failed to fetch flights");
+			setFlights(Array.isArray(data) ? data : []);
 		} catch (err) {
-			setError("Failed to fetch flights");
+			setError(err?.message || "Failed to fetch flights");
 		} finally {
 			setLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		const sp = new URLSearchParams(location.search);
+		const departure_city = sp.get("departure_city") || "";
+		const arrival_city = sp.get("arrival_city") || "";
+		const sort = sp.get("sort") || "";
+		if (departure_city && arrival_city) {
+			handleSearch({ departure_city, arrival_city, sort });
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.search]);
 
 	return (
 		<div className="min-h-screen flex flex-col bg-blue-50">
